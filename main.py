@@ -47,15 +47,30 @@
 import utils
 import time
 
-client_id = ""
-client_secret = ""
-redirect_uri = ""
-username = ""
-playlist_id = ""
+print("Set your spotify api")
+
+client_id = input("Client ID: ")
+client_secret = input("Client Secret: ")
+redirect_uri = input("Redirect URI: ")
+username = input("Username: ")
+playlist_id = input("Playlist ID: ")
+
+print("Set format of writting")
+format = input("/play")
+
+if format == "":
+    format = "/play"
+
+i = 5
+
+while i > 0:
+    print(f"Writting will begin in {i} seconds...")
+    time.sleep(1)
+    i -= 1
 
 playlist = utils.fetchPlaylist(client_id, client_secret, redirect_uri, username, playlist_id)
 
 for song in playlist:
     time.sleep(1)
     print(song)
-    utils.write("/play " + song)
+    utils.write(format + " " + song)
